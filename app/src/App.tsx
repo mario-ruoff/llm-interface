@@ -21,7 +21,7 @@ function App() {
           minHeight: '100vh',
         }}>
         <Container maxWidth="md">
-          <TextField variant='outlined' fullWidth />
+          <TextField variant='outlined' fullWidth sx={{ '& .MuiOutlinedInput-root': { borderRadius: 8 } }} />
         </Container>
       </Box>
     </ThemeProvider>
