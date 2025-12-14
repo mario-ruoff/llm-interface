@@ -1,15 +1,27 @@
 from typing import Union
-
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app = FastAPI()
 
 
+class Prompt(BaseModel):
+    prompt: str
+
+
+def generate_answer(prompt):
+    return "No idea"
+
+
 @app.get("/api")
-def read_root():
-    return {"initialText": "Test"}
+def generate_text():
+    return {"initialText": "Ask anything..."}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/api")
+def process_prompt(payload: Prompt):
+    answer = generate_answer(payload.prompt)
+    return {
+        "prompt": payload.prompt,
+        "answer": answer
+    }
